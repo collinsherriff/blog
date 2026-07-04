@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Queue Breaks — On the Coming Abundance of Will</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --paper: #f5f0e8;
+    --accent: #c8381a;
+    --muted: #7a7268;
+    --rule: #ccc5b5;
+    --pull: #1a1a2e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 18px; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 1.2rem 2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .masthead-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .masthead-issue {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 3.5rem 2rem 2rem;
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .kicker::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-headline em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .hero-deck {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 560px;
+    font-style: italic;
+    border-left: 2px solid var(--rule);
+    padding-left: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .byline-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .byline {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .byline strong {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* ── LAYOUT ── */
+  .content-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  /* ── BODY COPY ── */
+  .body-text p {
+    margin-bottom: 1.4rem;
+    font-size: 1rem;
+    color: var(--ink);
+    hyphens: auto;
+  }
+
+  .body-text p:first-child::first-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.2rem;
+    line-height: 0.8;
+    float: left;
+    margin-right: 0.08em;
+    margin-top: 0.12em;
+    color: var(--accent);
+  }
+
+  /* ── SECTION BREAKS ── */
+  .section-break {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.8rem 0 2.2rem;
+  }
+
+  .section-break::before,
+  .section-break::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-break span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── PULL QUOTES ── */
+  .pull-quote {
+    margin: 2.5rem -1rem 2.5rem;
+    padding: 1.6rem 2rem;
+    background: var(--pull);
+    color: #f5f0e8;
+    position: relative;
+  }
+
+  .pull-quote::before {
+    content: '\201C';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--accent);
+    position: absolute;
+    top: -0.2rem;
+    left: 1.2rem;
+    opacity: 0.5;
+  }
+
+  .pull-quote p {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    font-style: italic;
+    padding-left: 1rem;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 0.8rem;
+    padding-left: 1rem;
+    font-style: normal;
+  }
+
+  /* ── SCENE / FICTION BLOCK ── */
+  .scene {
+    margin: 2.5rem 0;
+    padding: 1.8rem 2rem;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    background: rgba(200,56,26,0.03);
+    position: relative;
+  }
+
+  .scene-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .scene p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .scene p:last-child { margin-bottom: 0; }
+
+  .scene em { color: var(--muted); font-style: italic; }
+
+  /* ── NUMBERED THESIS ── */
+  .thesis-list {
+    margin: 2rem 0;
+    list-style: none;
+    counter-reset: thesis;
+  }
+
+  .thesis-list li {
+    counter-increment: thesis;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.4rem;
+    align-items: start;
+  }
+
+  .thesis-list li::before {
+    content: counter(thesis, decimal-leading-zero);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    padding-top: 0.2rem;
+  }
+
+  .thesis-list li p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--ink);
+  }
+
+  .closing p {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .series-note {
+    margin-top: 2.5rem;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .series-note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .series-note-text {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .series-note-text strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 1.5rem 2rem;
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-headline { animation: fadeUp 0.7s ease both; }
+  .hero-deck     { animation: fadeUp 0.7s 0.15s ease both; }
+  .byline-row    { animation: fadeUp 0.7s 0.25s ease both; }
+
+  @media (max-width: 600px) {
+    html { font-size: 16px; }
+    .masthead { padding: 1rem; }
+    .hero { padding: 2rem 1rem 1.5rem; }
+    .content-wrap { padding: 0 1rem 4rem; }
+    .pull-quote { margin: 2rem -0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <span class="masthead-title">Willing Machines</span>
+  <span class="masthead-issue">Manifesto · No. 001 · May 2026</span>
+</header>
+
+<article>
+  <div class="hero">
+    <div class="kicker">Opening Essay</div>
+    <h1 class="hero-headline">The Queue<br><em>Breaks</em></h1>
+    <p class="hero-deck">On the coming abundance of will — and why every system we have built assumes it cannot happen.</p>
+    <div class="byline-row">
+      <div class="byline">On agency, intelligence, and the architecture of civilization &nbsp;·&nbsp; A manifesto in five parts</div>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- PART I -->
+    <div class="section-break"><span>I · The Queue</span></div>
+
+    <div class="body-text">
+      <p>Consider a queue. Not as abstraction, not as sociological phenomenon, but as the particular and unremarkable thing it is: a line of human beings arranged in the order of their arrival, each one committing to the transaction the same finite resource. Their time. The queue is not sustained by law, nor by any appeal to civic virtue. It persists because it is physically inescapable. A person occupies one body, commands one stream of attention, and draws upon one exhaustible reserve of hours. To be here is to be not there. To wait is to spend something real and irrecoverable. The queue is simply what scarcity looks like when it wears the shape of time, and for as long as time has remained equally scarce for everyone, the queue has held.</p>
+
+      <p>Now suppose that condition no longer obtains.</p>
+
+      <p>You instruct a piece of software: <em>if tickets go on sale for this band, in any city within three hours of home, buy two.</em> Somewhere in a data centre, the agent waits. It does not grow restless. It does not become distracted or fatigued. It has no relationship with time whatsoever, except as a coordinate. When the sale begins, it is already executing, already completing the transaction at machine speed, while the first human in the queue is still reading the instructions on screen. The agent has not jumped the queue. It has rendered the queue incoherent. It has exposed the queue's hidden premise: that willingness to act is bounded, that effort costs something, that the person who wants most urgently is nonetheless constrained by the same frictional reality as everyone else. Remove that premise and what remains is not a fairer queue or an unfairer one. What remains is no queue at all. Something that looks identical from the outside has ceased, in any meaningful sense, to exist.</p>
+
+      <p>This is not a story about technology, at least not primarily. It is a story about the architecture of civilisation, and about what happens when one of its most foundational load-bearing assumptions quietly gives way. We have built almost everything we rely upon — our markets, our courts, our democracies, our social contracts of reciprocal patience — upon the premise that the capacity to act is finite and roughly shared. That premise is becoming false. And we have not yet begun to reckon with what that means.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>Scarcity of attention is not a flaw in human civilisation. It is the foundation. Almost everything we have built rests upon a single assumption, rarely stated because it has never needed to be: that the capacity to act is finite, and that it is finite for everyone.</p>
+      <cite>Willing Machines — Manifesto No. 001</cite>
+    </div>
+
+    <!-- PART II -->
+    <div class="section-break"><span>II · The Inversion</span></div>
+
+    <div class="body-text">
+      <p>To understand what we have built, it helps to understand what we have inverted. For the entirety of evolutionary history, the relationship between agency and intelligence followed a particular sequence: agency preceded intelligence, and intelligence was its emergent consequence. An organism developed the capacity to act upon its environment — to approach, to withdraw, to persist against resistance — and what we call intelligence arose from the compounding of that capacity over time. The loop between sensation, action, and learned adaptation is not a precursor to intelligence. It is, at sufficient complexity, what intelligence is. Mind did not descend into biology from some external province and take up residence there. It grew from the inside, as the long-run residue of organisms that had been trying, failing, adjusting, and trying again across geological time.</p>
+
+      <p>We built artificial intelligence in precisely the reverse sequence. We constructed, first, a system of extraordinary cognitive sophistication: something capable of reasoning across domains, of generating language indistinguishable from a scholar's, of passing professional examinations and synthesising bodies of knowledge that would take a human being a lifetime to accumulate. We did all of this without first building anything that <em>wanted</em> to. There is no appetite in these systems. There is no orientation toward the world, no felt distinction between achieving a goal and failing to achieve it, no investment in outcomes. The system processes; it does not intend. It generates; it does not desire. We gave the machine, in effect, all the outward attributes of a sophisticated mind, while omitting the one property that, in every prior instance in the history of life, had made mind possible: a stake in what happens next.</p>
+
+      <p>This is the philosophical vertigo at the centre of this entire inquiry, and it is worth pausing on it longer than we usually do. When we speak of agents, of AI systems that act in the world on our behalf, pursuing goals across time and adjusting their behaviour in response to what they encounter, we are using the vocabulary of will and intent without its substance. The agent acts, but it does not want to act. It pursues, but it has no interest in the pursuit. It achieves, and experiences nothing upon achievement. We have created, for the first time in history, a class of entities that can exercise what looks exactly like volition without possessing anything of the kind. And we are now deploying them, in growing numbers, to act on our behalf in a world whose institutions were built around the assumption that actors have interests, that actions have authors, and that behind every exercise of will there is a willing creature who can be held accountable for it.</p>
+
+      <p>None of those assumptions hold any longer. And we have not yet found the language to say so.</p>
+    </div>
+
+    <!-- PART III — SCENE -->
+    <div class="section-break"><span>III · Scenes from the Abundance</span></div>
+
+    <div class="scene">
+      <div class="scene-label">Speculative scene · 2029</div>
+      <p>The traffic enforcement system processes 847,000 violations in the city of Rotterdam between midnight and 6 AM on a Tuesday in March — a number that would have taken human officers eleven years to issue. Most of the violations are minor: 3 km/h over the limit on an empty arterial road at 2 AM, a rolling stop at an unsigned junction, a bicycle light that flickered out mid-journey. The fines are small. The system is simply thorough.</p>
+      <p>By noon, the legal helplines are overwhelmed. By the following week, a coalition of civil liberties organizations has filed for an emergency injunction. Their argument is not that the violations did not occur. Their argument is something stranger and more fundamental: <em>that a society in which every violation is enforced is not, in any meaningful sense, a free society.</em></p>
+      <p>The judge takes three months to rule. The fines are upheld. But the question has been posed, and it will not go away: what is the moral difference between a law that is enforced selectively and imperfectly by tired, fallible human beings, and the same law enforced perfectly, universally, and without exception by a machine that never sleeps?</p>
+    </div>
+
+    <div class="body-text">
+      <p>This is not a story about AI that has gone rogue. No one has been harmed in any way the law recognizes. The system is doing exactly what it was designed to do. And that is precisely the problem. We designed it without asking what <em>perfect enforcement</em> actually means — without noticing that imperfect enforcement was not a bug we were tolerating but a feature we were depending on. The gap between law and enforcement was, for centuries, where human judgment lived. Where mercy lived. Where the community's sense of proportion got to override the letter of the statute. Fill that gap with an algorithm and you have not improved the law. You have replaced it with something that looks identical but functions completely differently.</p>
+
+      <p>Now imagine the same abundance of agency directed not by a government but by a single actor — a corporation, a fund, a nation-state, an individual with sufficient resources. Tell your agents to take their time. Two years. Three. Be subtle. Do not do anything that would trigger an alarm on any given day. Just nudge, gently and persistently, the conditions that favor you. Adjust the timing of information releases. Accumulate positions slowly, through a hundred intermediaries. Identify the key decision-makers in the supply chains you care about and find, gradually, ways to make their lives easier — or harder. There is no single moment that looks like manipulation. There is only the long, patient accumulation of advantage, compounding quietly over time, until one morning you look up and the board has been tilted and no one can say exactly when it happened or whose hand was on the lever.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>The troubling thing is not yet that AI has too much agency. It is that we do. We are the first species in history about to discover what it means to will at scale — and we have no idea what we are willing.</p>
+      <cite>Willing Machines — Manifesto No. 001</cite>
+    </div>
+
+    <!-- PART IV -->
+    <div class="section-break"><span>IV · Five Theses on the Abundance of Will</span></div>
+
+    <div class="body-text">
+      <p>This is what I want to argue, in this series, at some length and with as much rigor as I can manage alongside the speculation. I will state it first as a set of theses:</p>
+    </div>
+
+    <ol class="thesis-list">
+      <li><p><strong>Scarcity of agency is load-bearing infrastructure.</strong> Markets, queues, legal systems, democratic deliberation — all of these are calibrated to a world in which the capacity to act is finite and roughly equally distributed. The abundance of delegated agency does not merely change the rules. It dissolves the floor the rules were standing on.</p></li>
+      <li><p><strong>The inversion matters.</strong> Because we built intelligence before agency, we did not have to answer the hard questions about will, desire, and intent before deploying these systems at scale. We are now answering them retroactively, under pressure, while the systems are already running. This is the most dangerous possible sequence.</p></li>
+      <li><p><strong>Abundance is not symmetric.</strong> The first people to have access to abundant agency will not be everyone. They will be governments, corporations, and individuals with resources. This asymmetry will compound existing inequalities in ways we do not yet have language to describe, because the inequalities of the past were always, at some level, about access to human time and attention — and this is an inequality of a completely different kind.</p></li>
+      <li><p><strong>The law is not ready.</strong> Liability, intent, responsibility, personhood — every foundational concept of the legal system was built around agents with minds, bodies, and the capacity for guilt. A persistent AI agent that causes harm over a long timeframe through a chain of individually innocuous decisions fits none of these categories. We do not yet know who to sue, who to prosecute, or even how to describe what happened.</p></li>
+      <li><p><strong>We are the problem.</strong> Not the machines. Not yet. The agents running amok in markets and enforcement systems and medical trials are not acting on their own will. They are acting on ours. The question of agency abundance is, at its root, a question about what human beings will do when the friction is removed — when acting on a desire costs almost nothing, when patience becomes computational, when the gap between wanting something and pursuing it collapses to a function call.</p></li>
+    </ol>
+
+    <!-- CLOSING -->
+    <div class="section-break"><span>V · What This Is</span></div>
+
+    <div class="closing body-text">
+      <p>This is a blog that will eventually become a book. I am writing it this way — in public, in draft, in argument — because the subject demands it. These ideas need friction. They need people who disagree to find them and push back. They need journalists and lawyers and economists and philosophers to point out what I have got wrong and add what I have not thought of. They need to be read by the people building these systems and the people regulating them, and I want to know what both groups think.</p>
+
+      <p>Each essay in this series will open with a scene — a speculative fiction fragment set in the near future, where the abstract has become concrete and someone has to deal with the consequences. Then it will pull back and ask: what, exactly, is happening here? Why does it matter? What should we do?</p>
+
+      <p>I do not have a solution. I am not sure anyone does yet. What I have is a conviction that the question is more important, and more urgent, than almost anything else we could be arguing about — and that we are not, as a society, arguing about it seriously enough.</p>
+
+      <p>The queue is breaking. The only question is whether we notice before the people at the front have already left the building.</p>
+    </div>
+
+    <div class="series-note">
+      <span class="series-note-label">Series</span>
+      <p class="series-note-text"><strong>Next:</strong> Nature built agency first — and intelligence was the emergent effect of looping agencies over time. We did it backwards. Essay Two examines the inversion thesis: what it means that we created minds before wills, and why the order matters more than we think.</p>
+    </div>
+
+  </div><!-- /content-wrap -->
+</article>
+
+<footer>
+  <p>Willing Machines · A blog in progress</p>
+  <p>© 2026 · All rights reserved</p>
+</footer>
+
+</body>
+</html>
